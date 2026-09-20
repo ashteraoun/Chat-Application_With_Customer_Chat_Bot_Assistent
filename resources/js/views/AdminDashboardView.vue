@@ -113,8 +113,22 @@
 </template>
 
 <style scoped>
+@reference "../../css/app.css";
+
 .admin-dashboard {
-  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8;
+  @apply mx-auto max-w-7xl px-4 py-8;
+}
+
+@media (min-width: 640px) {
+  .admin-dashboard {
+    @apply px-6;
+  }
+}
+
+@media (min-width: 1024px) {
+  .admin-dashboard {
+    @apply px-8;
+  }
 }
 
 /* Header */
@@ -221,7 +235,7 @@
 }
 
 .action-card {
-  @apply relative overflow-hidden rounded-xl p-6 shadow-lg border transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group;
+  @apply relative overflow-hidden rounded-xl border p-6 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl;
 }
 
 .action-users {
@@ -237,7 +251,11 @@
 }
 
 .action-icon-wrapper {
-  @apply bg-white/20 backdrop-blur-sm w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110;
+  @apply mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-white/20 backdrop-blur-sm transition-transform duration-300;
+}
+
+.action-card:hover .action-icon-wrapper {
+  transform: scale(1.1);
 }
 
 .action-icon {
@@ -257,7 +275,12 @@
 }
 
 .action-arrow {
-  @apply absolute top-0 right-0 text-xl opacity-0 transform translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0;
+  @apply absolute right-0 top-0 translate-x-2 text-xl opacity-0 transition-all duration-300;
+}
+
+.action-card:hover .action-arrow {
+  transform: translateX(0);
+  opacity: 1;
 }
 
 /* Responsive */

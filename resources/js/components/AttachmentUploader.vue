@@ -1,7 +1,7 @@
 <template>
-  <label class="cursor-pointer rounded-2xl border border-slate-700 bg-slate-900 px-4 py-3 text-sm text-slate-200 transition hover:border-indigo-500">
+  <label title="Attach a file" class="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-lg border border-white/10 bg-white/5 text-lg text-slate-300 transition hover:border-teal-300/50 hover:bg-teal-300/10 hover:text-teal-200">
     <input type="file" class="hidden" @change="handleFileChange" />
-    Attach file
+    +
   </label>
 </template>
 

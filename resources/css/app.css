@@ -7,6 +7,32 @@
 @source "../**/*.vue";
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+    color-scheme: dark;
+    font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+    background: #07111f;
+}
+
+body {
+    min-width: 320px;
+    margin: 0;
+    background:
+        radial-gradient(circle at 12% 8%, rgba(18, 104, 112, 0.18), transparent 28rem),
+        radial-gradient(circle at 88% 18%, rgba(188, 116, 42, 0.12), transparent 24rem),
+        #07111f;
+}
+
+button,
+a,
+input,
+textarea,
+select {
+    transition: border-color 180ms ease, background-color 180ms ease, color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+::selection {
+    background: rgba(45, 212, 191, 0.35);
 }

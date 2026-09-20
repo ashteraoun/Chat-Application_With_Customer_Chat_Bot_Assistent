@@ -1,9 +1,14 @@
 <template>
-  <div class="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-    <section class="rounded-[2rem] border border-slate-800 bg-slate-900 p-4 shadow-2xl shadow-slate-950/40">
+  <div class="grid gap-5 lg:grid-cols-[minmax(0,1fr)_300px]">
+    <section class="overflow-hidden rounded-2xl border border-white/10 bg-[#0d1b2b]/95 shadow-2xl shadow-black/20">
       <ChatHeader :conversation="conversation" :onlineStatus="onlineStatus" />
 
-      <div class="mt-4 space-y-3 overflow-y-auto rounded-[1.5rem] bg-slate-950/70 p-3 max-h-[62vh]">
+      <div class="flex max-h-[62vh] min-h-[360px] flex-col space-y-3 overflow-y-auto bg-[#081522] px-4 py-5 sm:px-6">
+        <div v-if="!messages.length" class="m-auto max-w-sm text-center">
+          <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-teal-300/20 bg-teal-300/10 text-2xl text-teal-200">~</div>
+          <h2 class="mt-4 text-lg font-semibold text-white">Start the conversation</h2>
+          <p class="mt-2 text-sm leading-6 text-slate-400">Send a message to begin helping with this request.</p>
+        </div>
         <MessageBubble
           v-for="message in messages"
           :key="message.id"
@@ -14,32 +19,39 @@
 
       <TypingIndicator :typingUsers="typingUsers" />
 
-      <form @submit.prevent="submitMessage" class="mt-4 grid gap-3">
-        <AttachmentUploader @select="handleFileSelect" />
+      <form @submit.prevent="submitMessage" class="border-t border-white/10 bg-[#0d1b2b] p-4 sm:p-5">
+        <div class="flex items-end gap-3 rounded-xl border border-white/10 bg-[#081522] p-2 focus-within:border-teal-300/50 focus-within:ring-2 focus-within:ring-teal-300/10">
+          <AttachmentUploader @select="handleFileSelect" />
         <textarea
           v-model="body"
           rows="4"
           @input="handleTypingInput"
           @blur="handleTypingState(false)"
-          class="w-full rounded-[1.5rem] border border-slate-800 bg-slate-950 px-4 py-3 text-sm text-slate-100 outline-none focus:border-indigo-500"
+          placeholder="Write a reply..."
+          class="min-h-12 flex-1 resize-none bg-transparent px-2 py-2 text-sm leading-6 text-slate-100 outline-none placeholder:text-slate-500"
         ></textarea>
-        <button class="rounded-[1.2rem] bg-gradient-to-r from-indigo-600 to-sky-500 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-900/30">Send message</button>
+          <button class="rounded-lg bg-teal-400 px-4 py-3 text-sm font-bold text-[#07111f] shadow-lg shadow-teal-400/10 hover:bg-teal-300">Send</button>
+        </div>
       </form>
     </section>
 
-    <aside class="rounded-[2rem] border border-slate-800 bg-slate-950 p-4 shadow-xl shadow-slate-950/40">
-      <div class="mb-4">
-        <h3 class="text-lg font-semibold text-white">Conversation details</h3>
+    <aside class="rounded-2xl border border-white/10 bg-[#0d1b2b]/90 p-5 shadow-xl shadow-black/20">
+      <div class="mb-5 flex items-start justify-between gap-3">
+        <div>
+          <p class="text-[11px] font-bold tracking-[0.2em] text-teal-300 uppercase">Workspace</p>
+          <h3 class="mt-1 text-lg font-semibold text-white">Conversation details</h3>
+        </div>
+        <span class="h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-lg shadow-emerald-400/40"></span>
       </div>
-      <div class="space-y-3 text-sm text-slate-300">
-        <p><strong>Participants:</strong> {{ conversation.participants?.length || 0 }}</p>
-        <p><strong>Messages:</strong> {{ messages.length }}</p>
-        <p><strong>Current role:</strong> {{ auth.user?.role || 'guest' }}</p>
+      <div class="divide-y divide-white/10 overflow-hidden rounded-xl border border-white/10 bg-[#081522] text-sm">
+        <div class="flex items-center justify-between px-4 py-3"><span class="text-slate-400">Participants</span><strong class="text-white">{{ conversation.participants?.length || 0 }}</strong></div>
+        <div class="flex items-center justify-between px-4 py-3"><span class="text-slate-400">Messages</span><strong class="text-white">{{ messages.length }}</strong></div>
+        <div class="flex items-center justify-between px-4 py-3"><span class="text-slate-400">Your role</span><strong class="capitalize text-teal-200">{{ auth.user?.role || 'guest' }}</strong></div>
       </div>
 
-      <div class="mt-6 rounded-[1.3rem] border border-slate-800 bg-slate-900 p-4">
-        <p class="text-sm text-slate-400">Conversation preview</p>
-        <div class="mt-3 rounded-[1rem] bg-slate-950 px-3 py-3 text-sm text-slate-300">
+      <div class="mt-5 rounded-xl border border-white/10 bg-[#081522] p-4">
+        <p class="text-[11px] font-bold tracking-[0.16em] text-slate-500 uppercase">Subject</p>
+        <div class="mt-3 text-sm leading-6 text-slate-200">
           {{ conversation.title || 'Customer support conversation' }}
         </div>
       </div>
