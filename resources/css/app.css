@@ -13,16 +13,16 @@
 :root {
     color-scheme: dark;
     font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif;
-    background: #07111f;
+    background: #f5f3ee;
 }
 
 body {
     min-width: 320px;
     margin: 0;
     background:
-        radial-gradient(circle at 12% 8%, rgba(18, 104, 112, 0.18), transparent 28rem),
-        radial-gradient(circle at 88% 18%, rgba(188, 116, 42, 0.12), transparent 24rem),
-        #07111f;
+        radial-gradient(circle at 72% 5%, rgba(242, 111, 82, 0.13), transparent 25rem),
+        radial-gradient(circle at 28% 80%, rgba(39, 169, 157, 0.12), transparent 28rem),
+        #f5f3ee;
 }
 
 button,
